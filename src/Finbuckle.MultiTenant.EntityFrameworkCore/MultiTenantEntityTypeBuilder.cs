@@ -76,7 +76,10 @@ public class MultiTenantEntityTypeBuilder
                 fk.SetProperties(fkProps, newKey!);
             }
             
-            newKey?.AddAnnotations(annotations);
+            foreach (var annotation in annotations)
+            {
+                newKey?.SetAnnotation(annotation.Name, annotation.Value);
+            }
 
             // remove key
             Builder.Metadata.RemoveKey(key);
